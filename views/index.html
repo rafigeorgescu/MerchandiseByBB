@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Merchandise BB</title>
+    <link rel="stylesheet" href="..\css\index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="icon" href="..\css\resources\icon.png">
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBHU12as_wRBMwDKwHmiqr24bmv5E0Mfv0",
+            authDomain: "merchandisebybb.firebaseapp.com",
+            databaseURL: "https://merchandisebybb.firebaseio.com",
+            projectId: "merchandisebybb",
+            storageBucket: "",
+            messagingSenderId: "813712712924"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+<body style="background-color: #9E9E9E">
+    <div class="container text-center">
+        <h1 style="font-weight: bold">Merchandise by BB</h1>
+    </div>
+    <div class="container text-center">
+        <img src="..\css\resources\logos.png" alt="BB logos" id="logos">
+    </div>
+    <div class = "container text-center">
+        <ul class="nav nav-tabs" id="nav-tab" role="tablist">
+            <li class="nav-item col-md-6 active" id="textiles">
+                <a class="nav-link active" id="nav-textiles-tab" data-toggle="tab" href="#nav-textiles" role="tab" aria-controls="nav-textiles" aria-selected="true">Textile</a>
+            </li>
+            <li class="nav-item col-md-6" id="merchandise">
+                <a class="nav-link" id="nav-merchandise-tab" data-toggle="tab" href="#nav-merchandise" role="tab" aria-controls="nav-merchandise" aria-selected="false">Merchandise</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active in" id="nav-textiles" role="tabpanel" aria-labelledby="nav-textiles-tab">
+                <form>
+                    <div class="form-group row" id="info">
+                        <div class="col-md-4" id="lastname">
+                            <input type="lastname" class="form-control" placeholder="Nume">
+                        </div>
+                        <div class="col-md-4" id="firstname">
+                            <input type="firstname" class="form-control " aria-describedby="firstname" placeholder="Prenume">
+                        </div>
+                        <div class="col-md-4" id="number">
+                            <input type="phonenumber" class="form-control" placeholder="Nr. telefon">
+                        </div>
+                    </div>
+                    <div class="form-group" id="kind">
+                        <div id = "productInfo">
+                            <div>Produs din stocul BB sau produs personal?</div>
+                            <div class="form-check checkbox-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="stock" value="stock" onclick="showStock();">
+                                <label class="form-check-label" for="stock">Stoc</label>
+                                <div class="check"></div>
+                            </div>
+                            <div class="form-check checkbox-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="personal" value="personal" onclick="showPersonal();">
+                                <label class="form-check-label" for="personal">Personal</label>
+                                <div class="check"></div>
+                            </div>
+                        </div>
+                        <div id="stockForm" style="display: none;">
+                            <br>
+                            <div class="form-group" id="sex">
+                                <label>Sex</label>
+                                <div class="form-check checkbox-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="F" value="F">
+                                    <label class="form-check-label" for="F">Feminin</label>
+
+                                </div>
+                                <div class="form-check checkbox-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="M" value="M">
+                                    <label class="form-check-label" for="M">Masculin</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="product">Produs</label>
+                                <select class="form-control" id="product">
+                                    <option>Tricou</option>
+                                    <option>Hanorac</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="productColor">Culoare produs</label>
+                                    <select class="form-control" id="productColor">
+                                        <option>Alb</option>
+                                        <option>Negru</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="size">Marime</label>
+                                    <select class="form-control" id="size">
+                                        <option>XS</option>
+                                        <option>S</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="printModel">Model print</label>
+                                <select class="form-control" id="printModel">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="personalForm" style="display: none;">
+                            <br>
+                            <div class="form-group">
+                                <label for="printModel2">Model print</label>
+                                <select class="form-control" id="printModel2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="printColor">Culoare print</label>
+                                <select class="form-control" id="printColor">
+                                    <option>Alb</option>
+                                    <option>Negru</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="nav-merchandise" role="tabpanel" aria-labelledby="nav-merchandise-tab">
+                <div class="form-group row" id="info">
+                    <div class="col-md-4" id="lastname2">
+                        <input type="lastname" class="form-control" placeholder="Nume">
+                    </div>
+                    <div class="col-md-4" id="firstname2">
+                        <input type="firstname" class="form-control " aria-describedby="firstname" placeholder="Prenume">
+                    </div>
+                    <div class="col-md-4" id="number2">
+                        <input type="phonenumber" class="form-control" placeholder="Nr. telefon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="..\js\main.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
