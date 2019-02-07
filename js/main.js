@@ -12,6 +12,8 @@ mounted() {
     });
 };
 
+
+
 function showStock(){
     document.getElementById('stockForm').style.display ='block';
     document.getElementById('personalForm').style.display = 'none';
